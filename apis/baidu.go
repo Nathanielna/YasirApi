@@ -10,7 +10,7 @@ import (
 )
 
 func IndexApi(c *gin.Context) {
-    c.String(http.StatusOK, "It works")
+    c.String(http.StatusOK, "API开放平台，请前往api.12byg.com查询相关接口")
 }
 
 func AddBaidutopApi(c *gin.Context) {

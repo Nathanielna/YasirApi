@@ -7,8 +7,13 @@ import (
 type Baidutop struct {
    Id        int    `json:"id"`
    Title  string    `json:"title"`
-   Time  string `json:"time"`
-   Sort  string `json:"sort"`
+   Sort  string `json:"order"`
+}
+
+type BaidutopResult struct {
+  
+   Title  string    `json:"title"`
+   Sort  string `json:"order"`
 }
 
 func (p *Baidutop) AddBaidutop() (id int64, err error) {
@@ -20,15 +25,15 @@ func (p *Baidutop) AddBaidutop() (id int64, err error) {
    return
 }
 
-func (p *Baidutop) GetBaidutops() (baidutops []Baidutop, err error) {
-   baidutops = make([]Baidutop, 0)
-   rows, err := db.SqlDB.Query("SELECT title,sort FROM baidutop")
+func (p *Baidutop) GetBaidutops() (baidutops []BaidutopResult, err error) {
+   baidutops = make([]BaidutopResult, 0)
+   rows, err := db.SqlDB.Query("SELECT bd_title,bd_order FROM baidutop")
    defer rows.Close()
    if err != nil {
       return
    }
    for rows.Next() {
-      var baidutop Baidutop
+      var baidutop BaidutopResult
       rows.Scan( &baidutop.Title, &baidutop.Sort)
       baidutops = append(baidutops, baidutop)
    }

@@ -5,6 +5,8 @@ import (
 )
 func InitRouter() *gin.Engine {
     router := gin.Default()
-    router.GET("/baidutop", GetPersonsApi)
+    router.GET("/", IndexApi)
+    router.GET("/baidutop", GetBaidutopsApi)
+    router.GET("/weibohot", GetWeibohotsApi)
     return router
 }
